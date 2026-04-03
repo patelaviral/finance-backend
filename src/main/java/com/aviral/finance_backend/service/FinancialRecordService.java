@@ -176,7 +176,7 @@ public class FinancialRecordService {
         return new LocalDate[]{start, end};
     }
 
-    // this below method will validate -> is user active/unactive and role?
+    // these below methods will validate -> is user active/unactive and role?
     private User validateUser(User user) {
         if(user == null) throw new AccessDeniedException("Unauthorized");
 

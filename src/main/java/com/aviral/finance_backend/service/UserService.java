@@ -46,11 +46,11 @@ public class UserService {
         User user = validateUser(usr);
         checkAdmin(user);
 
-        if (id.equals(user.getId())) {
+        if(id.equals(user.getId())) {
             throw new AccessDeniedException("Admin cannot delete themselves");
         }
 
-        if (!userRepository.existsById(id)) {
+        if(!userRepository.existsById(id)) {
             throw new ResourceNotFoundException("User with id " + id + " not found");
         }
 
@@ -81,6 +81,7 @@ public class UserService {
         return userRepository.save(targetUser);
     }
 
+    // this below method will validate -> is user active/unactive and role?
     private User validateUser(User user) {
         if(user == null) {
             throw new AccessDeniedException("Unauthorized");

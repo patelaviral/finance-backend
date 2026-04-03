@@ -28,21 +28,18 @@ public class JwtFilter extends OncePerRequestFilter {
 
         String path = request.getRequestURI();
 
-        // ✅ Allow login API without token
-        if (path.startsWith("/auth")) {
+        if(path.startsWith("/auth")) {
             filterChain.doFilter(request, response);
             return;
         }
 
         String authHeader = request.getHeader("Authorization");
 
-        if (authHeader != null && authHeader.startsWith("Bearer ")) {
+        if(authHeader != null && authHeader.startsWith("Bearer ")) {
 
             String token = authHeader.substring(7);
 
-            // ✅ Validate first
-            if (jwtUtil.isTokenValid(token)) {
-
+            if(jwtUtil.isTknValid(token)) {
                 String email = jwtUtil.extractEmail(token);
 
                 userRepository.findByEmail(email)

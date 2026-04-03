@@ -25,7 +25,6 @@ public class FinancialRecordController {
     @Autowired
     private FinancialRecordService recordService;
 
-    // ✅ Helper method (cleaner)
     private User getUser(HttpServletRequest request) {
         return (User) request.getAttribute("user");
     }
@@ -76,7 +75,6 @@ public class FinancialRecordController {
         return recordService.getByDateRange(start, end, user);
     }
 
-    // ✅ Added user validation context (via request)
     @GetMapping("/summary/income")
     public Double getTotalIncome(
             @RequestParam LocalDate start,

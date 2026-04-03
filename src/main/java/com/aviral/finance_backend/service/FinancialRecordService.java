@@ -176,16 +176,13 @@ public class FinancialRecordService {
         return new LocalDate[]{start, end};
     }
 
+    // this below method will validate -> is user active/unactive and role?
     private User validateUser(User user) {
+        if(user == null) throw new AccessDeniedException("Unauthorized");
 
-        if (user == null) {
-            throw new AccessDeniedException("Unauthorized");
-        }
-
-        if (user.getStatus() == Status.INACTIVE) {
+        if(user.getStatus() == Status.INACTIVE) {
             throw new AccessDeniedException("User is inactive");
         }
-
         return user;
     }
 

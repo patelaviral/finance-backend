@@ -19,11 +19,11 @@ public class JwtUtil {
         return Keys.hmacShaKeyFor(SECRET.getBytes());
     }
 
-    public String generateToken(String email) {
+    public String generateTkn(String email) {
         return Jwts.builder()
                 .setSubject(email)
                 .setIssuedAt(new Date())
-                .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 60)) // 1 hour
+                .setExpiration(new Date(System.currentTimeMillis() + 1000*60*60)) // 1 hour
                 .signWith(getSigningKey(), SignatureAlgorithm.HS256)
                 .compact();
     }
@@ -37,7 +37,7 @@ public class JwtUtil {
                 .getSubject();
     }
 
-    public boolean isTokenValid(String token) {
+    public boolean isTknValid(String token) {
         try {
             Jwts.parserBuilder()
                     .setSigningKey(getSigningKey())

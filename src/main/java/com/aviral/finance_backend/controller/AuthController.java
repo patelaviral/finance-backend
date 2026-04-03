@@ -27,12 +27,12 @@ public class AuthController {
         User user = userRepository.findByEmail(email)
                 .orElseThrow(() -> new RuntimeException("Invalid credentials"));
 
-        if (!user.getPassword().equals(password)) {
+        if(!user.getPassword().equals(password)) {
             throw new RuntimeException("Invalid credentials");
         }
 
-        String token = jwtUtil.generateToken(email);
+        String tkn = jwtUtil.generateTkn(email);
 
-        return Map.of("token", token);
+        return Map.of("token", tkn);
     }
 }
